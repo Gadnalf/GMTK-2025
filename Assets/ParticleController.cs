@@ -93,7 +93,7 @@ public class ParticleController : MonoBehaviour {
                 rb.linearVelocityY = -maxVelocity;
             }
         } else {
-            // while dashing, lerp towards max speed
+            // while dashing, decelerate towards max speed
             if (rb.linearVelocityY > 0) {
                 rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.up * maxVelocity, dashSlowdown);
             } else {
