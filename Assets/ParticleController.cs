@@ -78,10 +78,10 @@ public class ParticleController : MonoBehaviour {
         
         if (upDash) {
             rb.linearVelocity = Vector2.up * dashSpeed;
-            dashTimer = 0.5f;
+            dashTimer = dashTime;
         } else if (downDash) {
             rb.linearVelocity = Vector2.down * dashSpeed;
-            dashTimer = 0.5f;
+            dashTimer = dashTime;
         }
 
         // apply acceleration and clamp speed if not dashing
