@@ -9,7 +9,6 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(gameObject.transform.parent.GetComponent<Rigidbody2D>().linearVelocityY);
         float speedMag = Math.Abs(gameObject.transform.parent.GetComponent<Rigidbody2D>().linearVelocityY);
         if (speedMag > zoomMin && speedMag < zoomMax)
         {
