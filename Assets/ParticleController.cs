@@ -30,7 +30,7 @@ public class ParticleController : MonoBehaviour {
     private bool downTurn;
 
     // State
-    // steer should range between 1 and -1
+    // steer should range between 1 and -1u
     // 1 representing hard left and -1 representing hard right
     private float steering;
     private float previousRotation;
@@ -86,11 +86,12 @@ public class ParticleController : MonoBehaviour {
 
         // apply acceleration and clamp speed if not dashing
         if (dashTimer <= 0) {
+            float currentMaxVelocity = maxVelocity * steering;
             rb.linearVelocity += Vector2.up * accelerationRate * steering;
-            if (rb.linearVelocityY > maxVelocity) {
-                rb.linearVelocityY = maxVelocity;
-            } else if (rb.linearVelocityY < -maxVelocity) {
-                rb.linearVelocityY = -maxVelocity;
+            if (rb.linearVelocityY > currentMaxVelocity) {
+                rb.linearVelocityY = currentMaxVelocity;
+            } else if (rb.linearVelocityY < currentMaxVelocity) {
+                rb.linearVelocityY = currentMaxVelocity;
             }
         } else {
             // while dashing, decelerate towards max speed
@@ -99,7 +100,7 @@ public class ParticleController : MonoBehaviour {
             } else {
                 rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.up * -maxVelocity, dashSlowdown);
             }
-            
+
         }
 
         previousRotation = spriteObject.transform.rotation.eulerAngles.z;
