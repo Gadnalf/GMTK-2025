@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    float zoomMin = 1;
-    float zoomMax = 10;
+    public float zoomMin = 1;
+    public float zoomMax = 10;
 
     // Update is called once per frame
     void Update()
