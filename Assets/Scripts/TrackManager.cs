@@ -35,8 +35,7 @@ public class TrackManager : MonoBehaviour {
                 continue;
             }
 
-            float leftBoundary = ((trackOffset % trackLength) + trackLength) % trackLength;
-            float rightBoundary = trackOffset + sceneMaxX % trackLength;
+            float leftBoundary = (((trackOffset + sceneMinX) % trackLength) + trackLength) % trackLength;
             if (trackedObject.isOnScreen) {
                 trackedObject.UpdateObject(globalVelocity);
                 if (trackedObject.transform.position.x < sceneMinX) {
@@ -47,10 +46,25 @@ public class TrackManager : MonoBehaviour {
                     trackedObject.spawnPosition = leftBoundary;
                 }
             } else {
-                if (trackedObject.spawnPosition <= rightBoundary) {
+                if (isInTrackWindow(trackedObject.spawnPosition)) {
                     trackedObject.Unfreeze();
                 }
             }
+        }
+
+        // Don't do this till the end of the frame so that our wrap calculations are correct
+        trackOffset %= trackLength;
+    }
+
+    bool isInTrackWindow(float pos) {
+        float leftBoundary = (((trackOffset + sceneMinX) % trackLength) + trackLength) % trackLength;
+        float rightBoundary = (trackOffset + sceneMaxX) % trackLength;
+        if (leftBoundary < rightBoundary) {
+            Debug.Log("Checking if " + pos + " is in track window: " + leftBoundary + " to " + rightBoundary);
+            return pos >= leftBoundary && pos <= rightBoundary;
+        } else {
+            Debug.Log("Checking if " + pos + " is in wrap window: " + leftBoundary + " or " + rightBoundary);
+            return pos >= leftBoundary || pos <= rightBoundary;
         }
     }
 }
