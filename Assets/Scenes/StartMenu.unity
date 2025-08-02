@@ -625,7 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c26e07edaa2fe924ca08deaae56043cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameplayScene: AcceleratorScene
+  scene: AcceleratorScene
 --- !u!114 &1600724540
 MonoBehaviour:
   m_ObjectHideFlags: 0

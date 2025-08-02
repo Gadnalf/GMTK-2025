@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ButtonScript : MonoBehaviour
 {
-    public string gameplayScene;
+    public string scene;
 
 	void Start () {
 		Button btn = gameObject.GetComponent<Button>();
@@ -12,6 +12,6 @@ public class ButtonScript : MonoBehaviour
 	}
     void TaskOnClick()
     {
-        SceneManager.LoadScene(gameplayScene);
+        SceneManager.LoadScene(scene);
     }
 }
