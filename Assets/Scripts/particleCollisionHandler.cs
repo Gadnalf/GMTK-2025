@@ -10,6 +10,10 @@ public class particleCollisionHandler : MonoBehaviour
         {
             Debug.Log("Ran into basic obstacle!");
             HandleObstacleCollision(collision.gameObject);
+        } else if (collision.gameObject.CompareTag("Booster"))
+        {
+            Debug.Log("Ran into Booster!");
+            HandleEnterBooster(collision.gameObject);
         }
     }
 
@@ -27,6 +31,17 @@ public class particleCollisionHandler : MonoBehaviour
             Debug.Log("Particle Velocity too low, destroying object.");
             GameObject.Destroy(gameObject);
         }
+    }
+
+    void HandleEnterBooster(GameObject booster)
+    {
+        // v0 : just boost velocity
+        // We should also boost acceleration, but remove that acceleration when leaving
+        float velocityBump = booster.GetComponent<BoosterStats>().boosterVelocityBump;
+        float originalVelocity = TrackManager.instance.particleVelocity;
+        TrackManager.instance.particleVelocity += velocityBump;
+        Debug.Log("Velocity boosted from " + originalVelocity + "to " + 
+            TrackManager.instance.particleVelocity + " Delta: " + velocityBump);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
