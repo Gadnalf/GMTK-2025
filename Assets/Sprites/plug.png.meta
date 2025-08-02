@@ -1,0 +1,689 @@
+fileFormatVersion: 2
+guid: bb802e659a6ee0d478e32662244e2351
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7895276478198028600
+    second: plug_0
+  - first:
+      213: -67648117519220146
+    second: plug_1
+  - first:
+      213: 6198730467971140741
+    second: plug_2
+  - first:
+      213: 8891683982760389627
+    second: plug_3
+  - first:
+      213: -8375728107568057540
+    second: plug_4
+  - first:
+      213: 7511552973726231722
+    second: plug_5
+  - first:
+      213: 61466542467137522
+    second: plug_6
+  - first:
+      213: 1420585834017078234
+    second: plug_7
+  - first:
+      213: -4912158542688938978
+    second: plug_8
+  - first:
+      213: 7178544265160384207
+    second: plug_9
+  - first:
+      213: 8381059551678044177
+    second: plug_10
+  - first:
+      213: -6165179837225045579
+    second: plug_11
+  - first:
+      213: 841087895629853072
+    second: plug_12
+  - first:
+      213: -9185214170056312217
+    second: plug_13
+  - first:
+      213: 1562113236268933566
+    second: plug_14
+  - first:
+      213: 7791562213356198858
+    second: plug_15
+  - first:
+      213: -4070625264380633594
+    second: plug_16
+  - first:
+      213: -6947423649294166725
+    second: plug_17
+  - first:
+      213: -4052456687155589399
+    second: plug_18
+  - first:
+      213: -7262792735412247969
+    second: plug_19
+  - first:
+      213: -5298210493810275457
+    second: plug_20
+  - first:
+      213: 489979930504614217
+    second: plug_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: plug_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 546
+        width: 248
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c66281cfd75e6290800000000000000
+      internalID: -7895276478198028600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_1
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 0
+        width: 606
+        height: 793
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e420b81456aaf0ff0800000000000000
+      internalID: -67648117519220146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_2
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 665
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58c8fc1b480560650800000000000000
+      internalID: 6198730467971140741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_3
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 690
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfba67fd87b956b70800000000000000
+      internalID: 8891683982760389627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_4
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 608
+        width: 52
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c33b625a9af63cb80800000000000000
+      internalID: -8375728107568057540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_5
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 645
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aac2b76b1a56e3860800000000000000
+      internalID: 7511552973726231722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_6
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 547
+        width: 42
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ff3355ae7f5ad000800000000000000
+      internalID: 61466542467137522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_7
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 578
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adb3a891a4fe6b310800000000000000
+      internalID: 1420585834017078234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_8
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 462
+        width: 74
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1410a6c4d184dbb0800000000000000
+      internalID: -4912158542688938978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_9
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 214
+        width: 255
+        height: 254
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fce5d41c9ff4f9360800000000000000
+      internalID: 7178544265160384207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_10
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 386
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1181a2be1418f4470800000000000000
+      internalID: 8381059551678044177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_11
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 411
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b1fcc14a91e07aa0800000000000000
+      internalID: -6165179837225045579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_12
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 328
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 091f5eb1cf42cab00800000000000000
+      internalID: 841087895629853072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_13
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 366
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76ab8efa060978080800000000000000
+      internalID: -9185214170056312217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_14
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 268
+        width: 42
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb1eeb246bdbda510800000000000000
+      internalID: 1562113236268933566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_15
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 299
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acbd3743d80312c60800000000000000
+      internalID: 7791562213356198858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_16
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 0
+        width: 199
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60e9cde93eb3287c0800000000000000
+      internalID: -4070625264380633594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_17
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 64
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b355caffffac59f90800000000000000
+      internalID: -6947423649294166725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_18
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 89
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ee4f662d18c2c7c0800000000000000
+      internalID: -4052456687155589399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_19
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 7
+        width: 52
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f522770bc70653b90800000000000000
+      internalID: -7262792735412247969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_20
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 44
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7b013380a9f876b0800000000000000
+      internalID: -5298210493810275457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plug_21
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 0
+        width: 41
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9415cc89622ccc600800000000000000
+      internalID: 489979930504614217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      plug_0: -7895276478198028600
+      plug_1: -67648117519220146
+      plug_10: 8381059551678044177
+      plug_11: -6165179837225045579
+      plug_12: 841087895629853072
+      plug_13: -9185214170056312217
+      plug_14: 1562113236268933566
+      plug_15: 7791562213356198858
+      plug_16: -4070625264380633594
+      plug_17: -6947423649294166725
+      plug_18: -4052456687155589399
+      plug_19: -7262792735412247969
+      plug_2: 6198730467971140741
+      plug_20: -5298210493810275457
+      plug_21: 489979930504614217
+      plug_3: 8891683982760389627
+      plug_4: -8375728107568057540
+      plug_5: 7511552973726231722
+      plug_6: 61466542467137522
+      plug_7: 1420585834017078234
+      plug_8: -4912158542688938978
+      plug_9: 7178544265160384207
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
