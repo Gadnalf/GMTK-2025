@@ -26,6 +26,7 @@ public class TrackManager : MonoBehaviour {
     void FixedUpdate() {
         // Update track offset
         trackOffset += particleVelocity * Time.fixedDeltaTime;
+        trackOffset %= trackLength;
         Vector2 globalVelocity = Vector2.left * particleVelocity;
 
         foreach (TrackedObject trackedObject in trackedObjects) {
@@ -35,8 +36,7 @@ public class TrackManager : MonoBehaviour {
                 continue;
             }
 
-            float leftBoundary = ((trackOffset % trackLength) + trackLength) % trackLength;
-            float rightBoundary = trackOffset + sceneMaxX % trackLength;
+            float leftBoundary = (((trackOffset + sceneMinX) % trackLength) + trackLength) % trackLength;
             if (trackedObject.isOnScreen) {
                 trackedObject.UpdateObject(globalVelocity);
                 if (trackedObject.transform.position.x < sceneMinX) {
@@ -47,10 +47,20 @@ public class TrackManager : MonoBehaviour {
                     trackedObject.spawnPosition = leftBoundary;
                 }
             } else {
-                if (trackedObject.spawnPosition <= rightBoundary) {
+                if (isInTrackWindow(trackedObject.spawnPosition)) {
                     trackedObject.Unfreeze();
                 }
             }
+        }
+    }
+
+    bool isInTrackWindow(float pos) {
+        float leftBoundary = (((trackOffset + sceneMinX) % trackLength) + trackLength) % trackLength;
+        float rightBoundary = (((trackOffset + sceneMaxX) % trackLength) + trackLength) % trackLength;
+        if (leftBoundary < rightBoundary) {
+            return pos >= leftBoundary && pos <= rightBoundary;
+        } else {
+            return pos >= leftBoundary || pos <= rightBoundary;
         }
     }
 }
