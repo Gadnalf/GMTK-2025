@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour {
     public static UpgradeManager instance;
+    public static int money = 0;
 
     public static class Upgrades {
         public const string StartingVelocity = "StartingVelocity";
@@ -95,8 +96,17 @@ public class UpgradeManager : MonoBehaviour {
         return curLevels[upgrade] < maxLevels[upgrade];
     }
 
+    public void AddMoney(int amount) {
+        money += amount;
+    }
+
+    public bool CanAfford(string upgrade) {
+        return money >= GetUpgradeCost(upgrade);
+    }
+
     public bool Upgrade(string upgrade) {
-        if (CanUpgrade(upgrade)) {
+        if (CanUpgrade(upgrade) && CanAfford(upgrade)) {
+            money -= GetUpgradeCost(upgrade);
             curLevels[upgrade]++;
             return true;
         }
