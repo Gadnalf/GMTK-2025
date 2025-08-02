@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour {
     public static UpgradeManager instance;
-    
+
     public static class Upgrades {
         public const string StartingVelocity = "StartingVelocity";
         public const string MaxVelocity = "MaxVelocity";
@@ -73,10 +73,6 @@ public class UpgradeManager : MonoBehaviour {
         }
         DontDestroyOnLoad(gameObject);
     }
-
-    private bool isUpgraded(string upgrade) {
-    }
-    
 
     public float GetValue(string upgrade) {
         return baseValues[upgrade] + upgradeIncrements[upgrade] * curLevels[upgrade];
