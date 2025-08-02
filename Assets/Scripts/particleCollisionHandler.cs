@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class particleCollisionHandler : MonoBehaviour
 {
+    int comboCount;
 
+    void Start()
+    {
+        comboCount = 0;
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the collided object has a specific tag
@@ -31,6 +36,7 @@ public class particleCollisionHandler : MonoBehaviour
             Debug.Log("Particle Velocity too low, destroying object.");
             GameObject.Destroy(gameObject);
         }
+        comboCount = 0;
     }
 
     void HandleEnterBooster(GameObject booster)
@@ -39,9 +45,11 @@ public class particleCollisionHandler : MonoBehaviour
         // We should also boost acceleration, but remove that acceleration when leaving
         float velocityBump = booster.GetComponent<BoosterStats>().boosterVelocityBump;
         float originalVelocity = TrackManager.instance.particleVelocity;
-        TrackManager.instance.particleVelocity += velocityBump;
+        float comboMultiplier = 1.0f + 0.2f * comboCount;
+        TrackManager.instance.particleVelocity += velocityBump * comboMultiplier;
         Debug.Log("Velocity boosted from " + originalVelocity + "to " + 
-            TrackManager.instance.particleVelocity + " Delta: " + velocityBump);
+            TrackManager.instance.particleVelocity + " Delta:(Base: " + velocityBump + ", Combo Multiplier: " + comboMultiplier);
+        comboCount += 1;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
