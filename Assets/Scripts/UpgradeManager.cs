@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour {
     public static UpgradeManager instance;
+    
     public static class Upgrades {
         public const string StartingVelocity = "StartingVelocity";
         public const string MaxVelocity = "MaxVelocity";
@@ -57,11 +58,11 @@ public class UpgradeManager : MonoBehaviour {
     private Dictionary<string, int> upgradeCost = new Dictionary<string, int> {
         {Upgrades.StartingVelocity, 100},
         {Upgrades.MaxVelocity, 100},
-        {Upgrades.AccelerationRate, 1500},
-        {Upgrades.ParticleWeight, 2500},
-        {Upgrades.DashSpeed, 1500},
-        {Upgrades.DashTime, 1500},
-        {Upgrades.TurnRate, 5000}
+        {Upgrades.AccelerationRate, 2500},
+        {Upgrades.ParticleWeight, 3000},
+        {Upgrades.DashSpeed, 2500},
+        {Upgrades.DashTime, 2500},
+        {Upgrades.TurnRate, 10000}
     };
 
     void Awake() {
@@ -70,7 +71,12 @@ public class UpgradeManager : MonoBehaviour {
         } else {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
     }
+
+    private bool isUpgraded(string upgrade) {
+    }
+    
 
     public float GetValue(string upgrade) {
         return baseValues[upgrade] + upgradeIncrements[upgrade] * curLevels[upgrade];
