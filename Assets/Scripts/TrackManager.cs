@@ -60,10 +60,8 @@ public class TrackManager : MonoBehaviour {
         float leftBoundary = (((trackOffset + sceneMinX) % trackLength) + trackLength) % trackLength;
         float rightBoundary = (trackOffset + sceneMaxX) % trackLength;
         if (leftBoundary < rightBoundary) {
-            Debug.Log("Checking if " + pos + " is in track window: " + leftBoundary + " to " + rightBoundary);
             return pos >= leftBoundary && pos <= rightBoundary;
         } else {
-            Debug.Log("Checking if " + pos + " is in wrap window: " + leftBoundary + " or " + rightBoundary);
             return pos >= leftBoundary || pos <= rightBoundary;
         }
     }
