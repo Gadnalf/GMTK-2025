@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - BasicObstacle
+  - Booster
   layers:
   - Default
   - TransparentFX
