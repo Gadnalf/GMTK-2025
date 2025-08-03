@@ -5,6 +5,6 @@ public class CurrencyController : MonoBehaviour
 {
     void Start()
     {
-        GetComponent<Slider>().value = UpgradeManager.money == 0 ? 0 : (float) UpgradeManager.tempMoney / UpgradeManager.money;
+        GetComponent<Slider>().value = UpgradeManager.instance.money == 0 ? 0 : (float) UpgradeManager.instance.tempMoney / UpgradeManager.instance.money;
     }
 }
