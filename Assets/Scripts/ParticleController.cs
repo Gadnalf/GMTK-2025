@@ -222,7 +222,7 @@ public class ParticleController : MonoBehaviour {
 
     public void Explode(float explosionForce = 10f) {
         // Do explosion effects here
-        spriteObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     private void ClearInput() {
