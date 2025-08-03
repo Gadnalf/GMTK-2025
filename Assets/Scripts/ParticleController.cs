@@ -5,18 +5,18 @@ using UnityEngine.Rendering.UI;
 
 public class ParticleController : MonoBehaviour {
     public float linearDamping = 20;
-    public float dashSpeed = 10.0f;
-    public float dashTime = 0.3f;
+    public float dashSpeed;
+    public float dashTime;
     // rate of deceleration while dashing (0.3 = lose 30% of speed per fixedupdate (0.2 seconds))
     public float dashSlowdown = 0.2f;
     public float dodgeTime = 0.3f;
     public float maxAngle = 20;
-    public float maxLateralVelocity = 6;
-    public float turnRate = 5;
-    public float lateralAccelerationRate = 0.5f;
+    public float maxLateralVelocity;
+    public float turnRate;
+    public float lateralAccelerationRate;
     public float lateralVelocity { get => rb.linearVelocityY; set => rb.linearVelocityY = value; }
 
-    public float forwardAccelerationRate = 0.5f;
+    public float forwardAccelerationRate;
     public float forwardVelocity { get => TrackManager.instance.particleVelocity; set => TrackManager.instance.particleVelocity = value; }
 
     // left and right bounds for particle
@@ -26,7 +26,6 @@ public class ParticleController : MonoBehaviour {
 
     // health
     public float maxHealth = 100;
-    public float maxOverchargedHealth = 130;
 
     // ref
     Rigidbody2D rb;
@@ -61,6 +60,15 @@ public class ParticleController : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
+
+        forwardVelocity = UpgradeManager.instance.GetValue("StartingVelocity");
+        maxLateralVelocity = UpgradeManager.instance.GetValue("MaxVelocity");
+        lateralAccelerationRate = UpgradeManager.instance.GetValue("AccelerationRate");
+        forwardAccelerationRate = UpgradeManager.instance.GetValue("AccelerationRate");
+        maxHealth += UpgradeManager.instance.GetValue("ParticleWeight") * 10;
+        dashSpeed = UpgradeManager.instance.GetValue("DashSpeed");
+        dashTime = UpgradeManager.instance.GetValue("DashTime");
+        turnRate = UpgradeManager.instance.GetValue("TurnRate");
 
         StartCoroutine(IntroCutscene());
     }
