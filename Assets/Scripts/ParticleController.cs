@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
+using UnityEngine.SceneManagement;
 
 public class ParticleController : MonoBehaviour {
     public float linearDamping = 20;
@@ -206,8 +207,14 @@ public class ParticleController : MonoBehaviour {
     public void Damage(float amount) {
         currentHealth -= amount;
         if (currentHealth <= 0) {
-            Destroy(gameObject);
+            Explode();
         }
+    }
+
+    public void Explode() {
+        // Do explosion effects here
+        GameManager.instance.DoFailState();
+        spriteObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     private void ClearInput() {

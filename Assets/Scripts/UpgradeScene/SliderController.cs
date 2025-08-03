@@ -21,8 +21,8 @@ public class SliderController : MonoBehaviour, IPointerDownHandler
     void ValueChangeCheck()
     {
         UpgradeManager.instance.Upgrade(sliderString, Mathf.RoundToInt(slider.value));
-        heatGauge.value = UpgradeManager.money == 0 ? 0 : (float)UpgradeManager.tempMoney / UpgradeManager.money;
-        if (UpgradeManager.tempMoney > UpgradeManager.money) heatGauge.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().color = Color.red;
+        heatGauge.value = UpgradeManager.instance.money == 0 ? 0 : (float)UpgradeManager.instance.tempMoney / UpgradeManager.instance.money;
+        if (UpgradeManager.instance.tempMoney > UpgradeManager.instance.money) heatGauge.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().color = Color.red;
         else heatGauge.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().color = Color.green;
     }
 
