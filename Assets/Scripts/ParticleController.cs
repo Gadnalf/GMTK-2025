@@ -29,7 +29,7 @@ public class ParticleController : MonoBehaviour {
     public float maxHealth = 100;
 
     // ref
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     public GameObject spriteObject;
 
     // Lazy unmappable WASD controls
