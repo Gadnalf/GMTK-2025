@@ -118,7 +118,7 @@ public class ParticleController : MonoBehaviour {
 
         if (intangible) {
             Debug.Log("attempting barrel roll.");
-            float targetRotation = spriteObject.transform.eulerAngles.z + 3 * MathF.Sign(steering);
+            float targetRotation = spriteObject.transform.eulerAngles.z + 700 * MathF.Sign(steering) * Time.deltaTime;
             spriteObject.transform.rotation = Quaternion.Euler(0, 0, targetRotation); // do a barrel roll
         } else {
             float targetRotation = maxAngle * steering;
