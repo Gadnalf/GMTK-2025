@@ -214,7 +214,7 @@ public class ParticleController : MonoBehaviour {
     public void Explode() {
         // Do explosion effects here
         GameManager.instance.DoFailState();
-        spriteObject.GetComponent<SpriteRenderer>().enabled = false;
+        spriteObject.SetActive(false);
     }
 
     private void ClearInput() {

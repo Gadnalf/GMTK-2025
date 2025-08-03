@@ -8,6 +8,7 @@ public class OxygenScript : MonoBehaviour {
         // Initialize velocity to be offset
         Vector2 initialVelocity = new Vector2(Random.Range(-maxOffset, maxOffset), Random.Range(-maxOffset, maxOffset));
         GetComponent<EphemeralObject>().velocity = initialVelocity;
+        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
         GetComponent<Rigidbody2D>().angularVelocity = Random.Range(-maxAngularVelocity, maxAngularVelocity);
     }
 }
