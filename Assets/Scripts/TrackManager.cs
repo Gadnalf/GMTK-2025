@@ -63,7 +63,7 @@ public class TrackManager : MonoBehaviour {
                 if (trackedObject.transform.position.x < sceneMinX) {
                     // Instead of deleting objects, we'll just freeze them when out of bounds and teleport them
                     // i mean I guess we could simulate offscreen movement, but I don't think anyone would notice
-                    trackedObject.transform.position = new Vector2(sceneMaxX, trackedObject.transform.position.y);
+                    trackedObject.transform.position = new Vector2(2 * sceneMaxX, trackedObject.transform.position.y);
                     trackedObject.Freeze(); // Mark it as off-screen
                     trackedObject.spawnPosition = leftBoundary;
                 }
