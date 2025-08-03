@@ -215,13 +215,13 @@ public class ParticleController : MonoBehaviour {
     public void Damage(float amount) {
         currentHealth -= amount;
         if (currentHealth <= 0) {
+            GameManager.instance.DoFailState();
             Explode();
         }
     }
 
-    public void Explode() {
+    public void Explode(float explosionForce = 10f) {
         // Do explosion effects here
-        GameManager.instance.DoFailState();
         spriteObject.SetActive(false);
     }
 

@@ -17,7 +17,7 @@ public class ParticleCollisionHandler : MonoBehaviour
             Debug.Log("Dodged collision with " + collision.gameObject.name);
             return;
         }
-        
+
         // Check if the collided object has a specific tag
         if (collision.gameObject.CompareTag("BasicObstacle")) {
             Debug.Log("Ran into basic obstacle!");
@@ -25,6 +25,9 @@ public class ParticleCollisionHandler : MonoBehaviour
         } else if (collision.gameObject.CompareTag("Booster")) {
             Debug.Log("Ran into Booster!");
             HandleEnterBooster(collision.gameObject);
+        } else if (collision.gameObject.CompareTag("InstantDeath")) {
+            GameManager.instance.DoFailState();
+            pc.Explode();
         }
     }
 
