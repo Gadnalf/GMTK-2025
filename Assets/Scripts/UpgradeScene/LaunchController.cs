@@ -13,12 +13,16 @@ public class LaunchController : MonoBehaviour
 
     void Update()
     {
-        /* if (UpgradeManager.instance.currentPoints > UpgradeManager.instance.totalPoints)
+        if (UpgradeManager.tempMoney >= UpgradeManager.money)
         {
             GetComponent<Slider>().interactable = false;
-        } */
-        /*else */if (slider.value >= 1)
+        }
+        else {
+            GetComponent<Slider>().interactable = true;
+        }
+        if (slider.value >= 1)
         {
+            UpgradeManager.instance.SetMoney(UpgradeManager.tempMoney);
             SceneManager.LoadScene("AcceleratorScene");
         }
     }

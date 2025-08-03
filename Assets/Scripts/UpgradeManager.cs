@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour {
     public static UpgradeManager instance;
-    public static int money = 0;
+    public static int money = 10000;
 
-    public static class Upgrades {
+    public static int tempMoney = 0;
+
+    public static class Upgrades
+    {
         public const string StartingVelocity = "StartingVelocity";
         public const string MaxVelocity = "MaxVelocity";
         public const string AccelerationRate = "AccelerationRate";
@@ -79,9 +82,20 @@ public class UpgradeManager : MonoBehaviour {
         return baseValues[upgrade] + upgradeIncrements[upgrade] * curLevels[upgrade];
     }
 
-    public int GetUpgradeCost(string upgrade) {
-        // Upgrades double in cost per level
-        return upgradeCost[upgrade] << curLevels[upgrade];
+    public int GetUpgradeCost(string upgrade, int amount) {
+        int previousLevel = curLevels[upgrade];
+        int difference = amount - previousLevel;
+        int cost = 0;
+        if (difference == 1)
+        {
+            // Upgrades double in cost per level
+            cost += upgradeCost[upgrade] << curLevels[upgrade];
+        }
+        if (difference == -1)
+        {
+            cost += -1 * upgradeCost[upgrade] << (curLevels[upgrade] - 1);
+        }
+        return cost;
     }
 
     public int GetLevel(string upgrade) {
@@ -92,24 +106,15 @@ public class UpgradeManager : MonoBehaviour {
         return maxLevels[upgrade];
     }
 
-    public bool CanUpgrade(string upgrade) {
-        return curLevels[upgrade] < maxLevels[upgrade];
+    public void SetMoney(int amount)
+    {
+        money = amount;
     }
 
-    public void AddMoney(int amount) {
-        money += amount;
-    }
-
-    public bool CanAfford(string upgrade) {
-        return money >= GetUpgradeCost(upgrade);
-    }
-
-    public bool Upgrade(string upgrade) {
-        if (CanUpgrade(upgrade) && CanAfford(upgrade)) {
-            money -= GetUpgradeCost(upgrade);
-            curLevels[upgrade]++;
-            return true;
-        }
-        return false;
+    public bool Upgrade(string upgrade, int amount)
+    {
+        tempMoney += GetUpgradeCost(upgrade, amount);
+        curLevels[upgrade] = amount;
+        return true;
     }
 }

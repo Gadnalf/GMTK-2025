@@ -5,6 +5,6 @@ public class CurrencyController : MonoBehaviour
 {
     void Start()
     {
-        //gameObject.GetComponent<Slider>().value = UpgradeManager.instance.currentPoints / UpgradeManager.instance.totalPoints;
+        GetComponent<Slider>().value = UpgradeManager.money == 0 ? 0 : (float) UpgradeManager.tempMoney / UpgradeManager.money;
     }
 }
