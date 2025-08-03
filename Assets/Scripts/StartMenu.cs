@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ButtonScript : MonoBehaviour
+public class StartMenu : MonoBehaviour
 {
     public string scene;
 
