@@ -13,13 +13,16 @@ public class ParticleCollisionHandler : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (pc.intangible) {
+            Debug.Log("Dodged collision with " + collision.gameObject.name);
+            return;
+        }
+        
         // Check if the collided object has a specific tag
-        if (collision.gameObject.CompareTag("BasicObstacle"))
-        {
+        if (collision.gameObject.CompareTag("BasicObstacle")) {
             Debug.Log("Ran into basic obstacle!");
             HandleObstacleCollision(collision.gameObject);
-        } else if (collision.gameObject.CompareTag("Booster"))
-        {
+        } else if (collision.gameObject.CompareTag("Booster")) {
             Debug.Log("Ran into Booster!");
             HandleEnterBooster(collision.gameObject);
         }

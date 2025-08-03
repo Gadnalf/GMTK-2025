@@ -8,6 +8,7 @@ public class ParticleController : MonoBehaviour {
     public float dashTime = 0.3f;
     // rate of deceleration while dashing (0.3 = lose 30% of speed per fixedupdate (0.2 seconds))
     public float dashSlowdown = 0.2f;
+    public float dodgeTime = 0.3f;
     public float maxAngle = 20;
     public float maxLateralVelocity = 6;
     public float turnRate = 5;
@@ -51,6 +52,7 @@ public class ParticleController : MonoBehaviour {
     private float previousRotation;
     private float dashTimer;
     private float currentHealth;
+    public bool intangible;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -77,13 +79,32 @@ public class ParticleController : MonoBehaviour {
             }
         }
 
-        float targetRotation = maxAngle * steering;
-        float newRotation = Mathf.LerpAngle(previousRotation, targetRotation, Time.deltaTime / Time.fixedDeltaTime);
-        spriteObject.transform.rotation = Quaternion.Euler(0, 0, newRotation);
+
+        if (intangible) {
+            Debug.Log("attempting barrel roll.");
+            float targetRotation = spriteObject.transform.eulerAngles.z + 3 * MathF.Sign(steering);
+            spriteObject.transform.rotation = Quaternion.Euler(0, 0, targetRotation); // do a barrel roll
+        } else {
+            float targetRotation = maxAngle * steering;
+            float newRotation = Mathf.LerpAngle(previousRotation, targetRotation, Time.deltaTime / Time.fixedDeltaTime);
+            spriteObject.transform.rotation = Quaternion.Euler(0, 0, newRotation);
+        }
     }
 
     // this is called in TrackManager.FixedUpdate() before everything else
     public void DoPhysicsStep() {
+        // handle dodge
+        if (dashTimer <= 0) {
+            if (dodge) {
+                // dodge is a short burst of speed in the direction the particle is facing
+                horizontalVelocity += dashSpeed;
+                dashTimer = dodgeTime;
+                intangible = true;
+            } else {
+                intangible = false;
+            }
+        } 
+
         // lateral shite first
         if (dashTimer <= 0) {
             if (upTurn) {
@@ -167,5 +188,6 @@ public class ParticleController : MonoBehaviour {
         downDash = false;
         upTurn = false;
         downTurn = false;
+        dodge = false;
     }
 }
