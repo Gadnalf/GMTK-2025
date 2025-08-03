@@ -21,6 +21,7 @@ public class TrackManager : MonoBehaviour {
     public float trackLength = 50;
     public float trackOffset = 0;
 
+    public List<EphemeralObject> ephemeralObjects = new List<EphemeralObject>();
     public List<TrackedObject> trackedObjects = new List<TrackedObject>();
 
     void Awake() {
@@ -50,15 +51,13 @@ public class TrackManager : MonoBehaviour {
         }
 
         Vector2 globalVelocity = Vector2.left * particleVelocity;
+        float leftBoundary = (((trackOffset + sceneMinX) % trackLength) + trackLength) % trackLength;
+        float rightBoundary = (((trackOffset + sceneMaxX) % trackLength) + trackLength) % trackLength;
 
+        // Update tracked objects
+        trackedObjects.RemoveAll(item => item == null);
         foreach (TrackedObject trackedObject in trackedObjects) {
-            if (trackedObject == null) {
-                // If the tracked object is null, that means it was destroyed
-                trackedObjects.Remove(trackedObject);
-                continue;
-            }
-
-            float leftBoundary = (((trackOffset + sceneMinX) % trackLength) + trackLength) % trackLength;
+            
             if (trackedObject.isOnScreen) {
                 trackedObject.UpdateObject(globalVelocity);
                 if (trackedObject.transform.position.x < sceneMinX) {
@@ -69,16 +68,23 @@ public class TrackManager : MonoBehaviour {
                     trackedObject.spawnPosition = leftBoundary;
                 }
             } else {
-                if (isInTrackWindow(trackedObject.spawnPosition)) {
+                if (isInTrackWindow(trackedObject.spawnPosition, leftBoundary, rightBoundary)) {
                     trackedObject.Unfreeze();
                 }
             }
         }
+
+        // Update ephemeral objects
+        ephemeralObjects.RemoveAll(item => item == null);
+        foreach (EphemeralObject ephemeralObject in ephemeralObjects) {
+            ephemeralObject.UpdateObject(globalVelocity);
+            if (ephemeralObject.transform.position.x < sceneMinX) {
+                Destroy(ephemeralObject.gameObject);
+            }
+        }
     }
 
-    bool isInTrackWindow(float pos) {
-        float leftBoundary = (((trackOffset + sceneMinX) % trackLength) + trackLength) % trackLength;
-        float rightBoundary = (((trackOffset + sceneMaxX) % trackLength) + trackLength) % trackLength;
+    bool isInTrackWindow(float pos, float leftBoundary, float rightBoundary) {
         if (leftBoundary < rightBoundary) {
             return pos >= leftBoundary && pos <= rightBoundary;
         } else {
