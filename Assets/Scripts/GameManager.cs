@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
     void FixedUpdate() {
         if (isGameOver) return; // Prevent further updates if the game is over
 
-        moneyEarned += player.forwardVelocity * TrackManager.instance.loops;;
+        moneyEarned += player.forwardVelocity * (TrackManager.instance.loops + 1);
 
         if (winTimer < 0) {
             moneyEarned = moneyEarned * moneyMultiplierOnWin;
