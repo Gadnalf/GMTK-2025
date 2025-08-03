@@ -17,6 +17,15 @@ public class ParticleController : MonoBehaviour {
     public float forwardAccelerationRate = 0.5f;
     public float forwardVelocity { get => TrackManager.instance.particleVelocity; set => TrackManager.instance.particleVelocity = value; }
 
+    // left and right bounds for particle
+    public float particleMinX = -8;
+    public float particleMaxX = 3;
+    public float horizontalVelocity { get => rb.linearVelocityX; set => rb.linearVelocityX = value; }
+
+    // health
+    public float maxHealth = 100;
+    public float maxOverchargedHealth = 130;
+
     // ref
     Rigidbody2D rb;
     public GameObject spriteObject;
@@ -41,14 +50,20 @@ public class ParticleController : MonoBehaviour {
     private float steering;
     private float previousRotation;
     private float dashTimer;
+    private float currentHealth;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
     void Update() {
         if (dashTimer <= 0) {
+            if (Input.GetKeyDown(DODGE)) {
+                dodge = true;
+            }
+
             if (Input.GetKeyDown(UPDASH_KEY)) {
                 upDash = true;
             } else if (Input.GetKeyDown(DOWNDASH_KEY)) {
@@ -61,7 +76,7 @@ public class ParticleController : MonoBehaviour {
                 downTurn = true;
             }
         }
-        
+
         float targetRotation = maxAngle * steering;
         float newRotation = Mathf.LerpAngle(previousRotation, targetRotation, Time.deltaTime / Time.fixedDeltaTime);
         spriteObject.transform.rotation = Quaternion.Euler(0, 0, newRotation);
@@ -108,15 +123,43 @@ public class ParticleController : MonoBehaviour {
             } else {
                 lateralVelocity = Mathf.Lerp(lateralVelocity, -maxLateralVelocity, dashSlowdown);
             }
-
         }
 
         // forward acceleration
         forwardVelocity += forwardAccelerationRate * Time.fixedDeltaTime;
 
+        // slingshot towards where health indicates
+        float healthRatio = currentHealth / maxHealth;
+        float targetHorizontalPosition = healthRatio * -particleMinX + particleMinX;
+        // clamp target position to max
+        if (targetHorizontalPosition > particleMaxX) {
+            targetHorizontalPosition = particleMaxX;
+        }
+        horizontalVelocity += GetSpringForce(transform.position.x, targetHorizontalPosition, horizontalVelocity, 1.0f, 0.5f, Time.fixedDeltaTime);
+
         previousRotation = spriteObject.transform.rotation.eulerAngles.z;
         dashTimer -= Time.fixedDeltaTime;
         ClearInput();
+    }
+
+    public float GetSpringForce(float current, float target, float velocity, float frequency, float damping, float deltaTime) {
+        float omega = 2f * Mathf.PI * frequency;
+        float springFactor = omega * omega;
+        float dampingFactor = 2f * damping * omega;
+
+        float displacement = current - target;
+        float springForce = -springFactor * displacement;
+        float dampingForce = -dampingFactor * velocity;
+
+        float acceleration = springForce + dampingForce;
+        return acceleration * deltaTime;
+    }
+
+    public void Damage(float amount) {
+        currentHealth -= amount;
+        if (currentHealth <= 0) {
+            Destroy(gameObject);
+        }
     }
 
     private void ClearInput() {
