@@ -77,7 +77,7 @@ public class TrackManager : MonoBehaviour {
         }
         
         // update speedometer
-        speedDisplay.text = string.Format(SPEED_TEXT_FORMAT, particleVelocity^2);
+        speedDisplay.text = string.Format(SPEED_TEXT_FORMAT, particleVelocity * particleVelocity);
         // update loop counter
         loopsDisplay.text = string.Format(LOOPS_TEXT_FORMAT, loops);
     }
