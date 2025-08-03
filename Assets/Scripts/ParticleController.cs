@@ -9,9 +9,13 @@ public class ParticleController : MonoBehaviour {
     // rate of deceleration while dashing (0.3 = lose 30% of speed per fixedupdate (0.2 seconds))
     public float dashSlowdown = 0.2f;
     public float maxAngle = 20;
-    public float maxVelocity = 6;
+    public float maxLateralVelocity = 6;
     public float turnRate = 5;
-    public float accelerationRate = 0.5f;
+    public float lateralAccelerationRate = 0.5f;
+    public float lateralVelocity { get => rb.linearVelocityY; set => rb.linearVelocityY = value; }
+
+    public float forwardAccelerationRate = 0.5f;
+    public float forwardVelocity { get => TrackManager.instance.particleVelocity; set => TrackManager.instance.particleVelocity = value; }
 
     // ref
     Rigidbody2D rb;
@@ -22,12 +26,14 @@ public class ParticleController : MonoBehaviour {
     private static readonly KeyCode UPTURN_KEY = KeyCode.A;
     private static readonly KeyCode DOWNDASH_KEY = KeyCode.S;
     private static readonly KeyCode DOWNTURN_KEY = KeyCode.D;
+    private static readonly KeyCode DODGE = KeyCode.Space;
 
     // Input
     private bool upDash;
     private bool downDash;
     private bool upTurn;
     private bool downTurn;
+    private bool dodge;
 
     // State
     // steer should range between 1 and -1u
@@ -61,7 +67,9 @@ public class ParticleController : MonoBehaviour {
         spriteObject.transform.rotation = Quaternion.Euler(0, 0, newRotation);
     }
 
-    void FixedUpdate() {
+    // this is called in TrackManager.FixedUpdate() before everything else
+    public void DoPhysicsStep() {
+        // lateral shite first
         if (dashTimer <= 0) {
             if (upTurn) {
                 steering += turnRate / 100;
@@ -75,33 +83,36 @@ public class ParticleController : MonoBehaviour {
                 }
             }
         }
-        
+
         if (upDash) {
-            rb.linearVelocity = Vector2.up * dashSpeed;
+            lateralVelocity = dashSpeed;
             dashTimer = dashTime;
         } else if (downDash) {
-            rb.linearVelocity = Vector2.down * dashSpeed;
+            lateralVelocity = -dashSpeed;
             dashTimer = dashTime;
         }
 
         // apply acceleration and clamp speed if not dashing
         if (dashTimer <= 0) {
-            float currentMaxVelocity = maxVelocity * steering;
-            rb.linearVelocity += Vector2.up * accelerationRate * steering;
-            if (rb.linearVelocityY > currentMaxVelocity) {
-                rb.linearVelocityY = currentMaxVelocity;
-            } else if (rb.linearVelocityY < currentMaxVelocity) {
-                rb.linearVelocityY = currentMaxVelocity;
+            float currentMaxVelocity = maxLateralVelocity * steering;
+            lateralVelocity += lateralAccelerationRate * steering * Time.fixedDeltaTime;
+            if (lateralVelocity > currentMaxVelocity) {
+                lateralVelocity = currentMaxVelocity;
+            } else if (lateralVelocity < currentMaxVelocity) {
+                lateralVelocity = currentMaxVelocity;
             }
         } else {
             // while dashing, decelerate towards max speed
-            if (rb.linearVelocityY > 0) {
-                rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.up * maxVelocity, dashSlowdown);
+            if (lateralVelocity > 0) {
+                lateralVelocity = Mathf.Lerp(lateralVelocity, maxLateralVelocity, dashSlowdown);
             } else {
-                rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.up * -maxVelocity, dashSlowdown);
+                lateralVelocity = Mathf.Lerp(lateralVelocity, -maxLateralVelocity, dashSlowdown);
             }
 
         }
+
+        // forward acceleration
+        forwardVelocity += forwardAccelerationRate * Time.fixedDeltaTime;
 
         previousRotation = spriteObject.transform.rotation.eulerAngles.z;
         dashTimer -= Time.fixedDeltaTime;
