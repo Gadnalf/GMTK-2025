@@ -12,7 +12,9 @@ public class QuitGame : MonoBehaviour
     {
         if (Application.isEditor)
         {
-            EditorApplication.ExitPlaymode();
+            // commented this out since it won't build with this line
+            // Uncomment it if you are testing this in editor
+            //EditorApplication.ExitPlaymode();
         }
         else
         {
