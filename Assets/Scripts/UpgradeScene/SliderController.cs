@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,6 +12,16 @@ public class SliderController : MonoBehaviour, IPointerDownHandler
     public TextMeshProUGUI panelText;
     public TextMeshProUGUI panelGlow;
     Slider slider;
+    Dictionary<string, string> sliderStringDictionary = new()
+    {
+        ["StartingVelocity"] = "Initial speed of particle",
+        ["MaxVelocity"] = "Maximum vertical and horizontal speeds of particle",
+        ["AccelerationRate"] = "Speed at which the particle can accelerate",
+        ["ParticleWeight"] = "Additional bulk contributing to the particle's hit points",
+        ["DashSpeed"] = "Speed of the particle's dashes",
+        ["DashTime"] = "Duration of the particle's dashes",
+        ["TurnRate"] = "Manoeuverability of the particle on angles"
+    };
     void Start()
     {
         slider = GetComponent<Slider>();
@@ -28,7 +39,15 @@ public class SliderController : MonoBehaviour, IPointerDownHandler
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
-        panelText.text = sliderString;
-        panelGlow.text = sliderString;
+        if (sliderStringDictionary.TryGetValue(sliderString, out string value))
+        {
+            panelText.text = value;
+            panelGlow.text = value;
+        }
+        else
+        {
+            panelText.text = "";
+            panelGlow.text = "";
+        }
     }
 }
