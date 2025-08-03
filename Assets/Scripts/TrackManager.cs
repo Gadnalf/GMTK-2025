@@ -7,6 +7,13 @@ using UnityEngine.Timeline;
 public class TrackManager : MonoBehaviour {
     public static TrackManager instance;
     public ParticleController particleController;
+    public TMPro.TextMeshProUGUI speedDisplay;
+    public TMPro.TextMeshProUGUI loopsDisplay;
+
+    // stats
+    private static readonly string LOOPS_TEXT_FORMAT = "LOOP {0}";
+    private static readonly string SPEED_TEXT_FORMAT = "Speed: {0:0.00} m/s";
+    public int loops;
 
     public float sceneMinX = -10;
     public float sceneMaxX = 10;
@@ -24,13 +31,24 @@ public class TrackManager : MonoBehaviour {
         }
     }
 
+    void Update() {
+        // update speedometer
+        speedDisplay.text = string.Format(SPEED_TEXT_FORMAT, particleVelocity);
+        // update loop counter
+        loopsDisplay.text = string.Format(LOOPS_TEXT_FORMAT, loops);
+    }
+
     // yeah I guess this just does all the physics shit now?
     void FixedUpdate() {
         // Update particle before everything else
         particleController.DoPhysicsStep();
         // Update track offset
         trackOffset += particleVelocity * Time.fixedDeltaTime;
-        trackOffset %= trackLength;
+        if (trackOffset > trackLength) {
+            loops++;
+            trackOffset %= trackLength;
+        }
+
         Vector2 globalVelocity = Vector2.left * particleVelocity;
 
         foreach (TrackedObject trackedObject in trackedObjects) {
