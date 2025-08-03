@@ -6,6 +6,7 @@ using UnityEngine.Timeline;
 
 public class TrackManager : MonoBehaviour {
     public static TrackManager instance;
+    public ParticleController particleController;
 
     public float sceneMinX = -10;
     public float sceneMaxX = 10;
@@ -23,7 +24,10 @@ public class TrackManager : MonoBehaviour {
         }
     }
 
+    // yeah I guess this just does all the physics shit now?
     void FixedUpdate() {
+        // Update particle before everything else
+        particleController.DoPhysicsStep();
         // Update track offset
         trackOffset += particleVelocity * Time.fixedDeltaTime;
         trackOffset %= trackLength;
