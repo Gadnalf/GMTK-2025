@@ -33,12 +33,9 @@ public class ParticleCollisionHandler : MonoBehaviour
         pc.forwardVelocity = pc.forwardVelocity * particleMass / (obstacleMass + particleMass); // Reduce velocity by half
         Debug.Log("Particle Mass: " + particleMass + "Obstacle Mass: " + obstacleMass + "Collision Mass Factor = " + particleMass / (obstacleMass + particleMass));
         Debug.Log("Post-collision Velocity = " + pc.forwardVelocity);
-        if (pc.forwardVelocity < 0.1f)
-        {
-            //destory the game object if the velocity is too low    
-            Debug.Log("Particle Velocity too low, destroying object.");
-            GameObject.Destroy(gameObject);
-        }
+
+        pc.Damage(obstacleMass * 10);
+        
         comboCount = 0;
     }
 
