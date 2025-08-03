@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour {
     public static UpgradeManager instance;
-    public static int money = 10000;
+    public static int money = 0;
 
     public static int tempMoney = 0;
 
