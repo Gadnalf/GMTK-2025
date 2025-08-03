@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
 
@@ -54,27 +55,53 @@ public class ParticleController : MonoBehaviour {
     private float currentHealth;
     public bool intangible;
 
-    void Start() {
+    public bool cutsceneDone;
+
+    void Start()
+    {
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
+
+        StartCoroutine(IntroCutscene());
+    }
+
+    IEnumerator IntroCutscene()
+    {
+        transform.position = new Vector3(-10, 0, 0);
+        cutsceneDone = false;
+        for (int i = 0; i < 100; i++)
+        {
+            transform.position = new Vector3(-10 + ((float) i / 10), 0, 0);
+            yield return new WaitForSeconds(0.0025f);
+        }
+        cutsceneDone = true;
     }
 
     // Update is called once per frame
     void Update() {
-        if (dashTimer <= 0) {
-            if (Input.GetKeyDown(DODGE)) {
+        if (!cutsceneDone) return;
+        if (dashTimer <= 0)
+        {
+            if (Input.GetKeyDown(DODGE))
+            {
                 dodge = true;
             }
 
-            if (Input.GetKeyDown(UPDASH_KEY)) {
+            if (Input.GetKeyDown(UPDASH_KEY))
+            {
                 upDash = true;
-            } else if (Input.GetKeyDown(DOWNDASH_KEY)) {
+            }
+            else if (Input.GetKeyDown(DOWNDASH_KEY))
+            {
                 downDash = true;
             }
 
-            if (Input.GetKey(UPTURN_KEY)) {
+            if (Input.GetKey(UPTURN_KEY))
+            {
                 upTurn = true;
-            } else if (Input.GetKey(DOWNTURN_KEY)) {
+            }
+            else if (Input.GetKey(DOWNTURN_KEY))
+            {
                 downTurn = true;
             }
         }
