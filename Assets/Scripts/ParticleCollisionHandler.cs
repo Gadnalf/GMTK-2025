@@ -28,6 +28,9 @@ public class ParticleCollisionHandler : MonoBehaviour
         } else if (collision.gameObject.CompareTag("InstantDeath")) {
             GameManager.instance.DoFailState();
             pc.Explode();
+        } else if (collision.gameObject.CompareTag("Win")) {
+            GameManager.instance.DoWinState();
+            pc.Explode(20f);
         }
     }
 
