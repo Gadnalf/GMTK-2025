@@ -17,7 +17,9 @@ public class GameManager : MonoBehaviour {
     public float moneyMultiplierOnWin = 1.5f; // Multiplier for money earned on win
     public float crashParticleOffset = 12f; // Offset for the crash particle spawn position
     public TMPro.TextMeshProUGUI timeToImpactDisplay;
+    public TMPro.TextMeshProUGUI budgetDisplay;
     private static readonly string TIME_TO_IMPACT_TEXT_FORMAT = "T-MINUS {0:0.0} SECONDS TO IMPACT";
+    private static readonly string BUDGET_TEXT_FORMAT = "FUNDING SECURED: {0} BILLION DOLLARS";
     private bool isGameOver = false;
 
     void Awake() {
@@ -31,7 +33,11 @@ public class GameManager : MonoBehaviour {
     void FixedUpdate() {
         if (isGameOver) return; // Prevent further updates if the game is over
 
+        moneyEarned += player.forwardVelocity * (TrackManager.instance.loops + 1);
+
         if (winTimer < 0) {
+            moneyEarned = moneyEarned * moneyMultiplierOnWin;
+            budgetDisplay.text = string.Format(BUDGET_TEXT_FORMAT, moneyEarned);
             winTimer = 0;
             isGameOver = true;
             SpawnCrashParticle();
@@ -39,6 +45,7 @@ public class GameManager : MonoBehaviour {
             winTimer -= Time.fixedDeltaTime;
         }
         timeToImpactDisplay.text = string.Format(TIME_TO_IMPACT_TEXT_FORMAT, winTimer);
+        budgetDisplay.text = string.Format(BUDGET_TEXT_FORMAT, moneyEarned);
     }
 
     public void DoFailState() {
@@ -47,7 +54,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void DoWinState() {
-        UpgradeManager.instance.money += (int) (moneyEarned * moneyMultiplierOnWin);
+        UpgradeManager.instance.money += (int) (moneyEarned);
         StartCoroutine(LoadLevelAfterDelay(deathDelay)); // Load upgrades scene after a 1 second delay
     }
 

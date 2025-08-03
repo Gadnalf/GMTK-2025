@@ -32,13 +32,6 @@ public class TrackManager : MonoBehaviour {
         }
     }
 
-    void Update() {
-        // update speedometer
-        speedDisplay.text = string.Format(SPEED_TEXT_FORMAT, particleVelocity);
-        // update loop counter
-        loopsDisplay.text = string.Format(LOOPS_TEXT_FORMAT, loops);
-    }
-
     // yeah I guess this just does all the physics shit now?
     void FixedUpdate() {
         // Update particle before everything else
@@ -57,7 +50,7 @@ public class TrackManager : MonoBehaviour {
         // Update tracked objects
         trackedObjects.RemoveAll(item => item == null);
         foreach (TrackedObject trackedObject in trackedObjects) {
-            
+
             if (trackedObject.isOnScreen) {
                 trackedObject.UpdateObject(globalVelocity);
                 if (trackedObject.transform.position.x < sceneMinX) {
@@ -82,6 +75,11 @@ public class TrackManager : MonoBehaviour {
                 Destroy(ephemeralObject.gameObject);
             }
         }
+        
+        // update speedometer
+        speedDisplay.text = string.Format(SPEED_TEXT_FORMAT, particleVelocity^2);
+        // update loop counter
+        loopsDisplay.text = string.Format(LOOPS_TEXT_FORMAT, loops);
     }
 
     bool isInTrackWindow(float pos, float leftBoundary, float rightBoundary) {
